@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -9,7 +10,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "GATE Tracker Pro",
   description: "Advanced GATE preparation tracker with analytics and gamification",
-  generator: 'v0.dev'
+  generator: 'v0.dev',
+  verification: {
+    google: 'JdEoYvq_UkKpKgYKxMVX30tdY4ck2Y0TLoLTRW3EdeY'
+  }
 }
 
 export default function RootLayout({
@@ -19,11 +23,37 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <meta name="google-site-verification" content="JdEoYvq_UkKpKgYKxMVX30tdY4ck2Y0TLoLTRW3EdeY" />
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3806295349516544"
-        crossorigin="anonymous"></script>
+      <head>
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3806295349516544"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TL4SFSY3SS"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TL4SFSY3SS');
+          `}
+        </Script>
+      </head>
+
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
