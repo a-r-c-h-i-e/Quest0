@@ -350,9 +350,24 @@ export default function GATETracker() {
       const existingIndex = prev.findIndex((r) => r.date.toDateString() === selectedDate.toDateString())
       if (existingIndex >= 0) {
         const updated = [...prev]
-        updated[existingIndex] = newReport
+        const existing = updated[existingIndex]
+
+        const mergedReport: DailyReport = {
+          date: selectedDate,
+          lecturesCompleted: existing.lecturesCompleted + formData.lecturesCompleted,
+          topicsRevised: existing.topicsRevised + formData.topicsRevised,
+          practiceHours: existing.practiceHours + formData.practiceHours,
+          morningSession: existing.morningSession || formData.morningSession,
+          exerciseDone: existing.exerciseDone || formData.exerciseDone,
+          distractionsLevel: formData.distractionsLevel, // Always take latest
+          expGained: existing.expGained + expGained,
+          mentalState: formData.mentalState
+        }
+
+        updated[existingIndex] = mergedReport
         return updated
-      } else {
+      }
+      else {
         return [newReport, ...prev].slice(0, 30) // Keep last 30 days
       }
     })
@@ -1449,9 +1464,8 @@ export default function GATETracker() {
                               {Array.from({ length: 5 }).map((_, i) => (
                                 <Star
                                   key={i}
-                                  className={`h-4 w-4 ${
-                                    i < resource.rating ? "text-yellow-400 fill-current" : "text-gray-300"
-                                  }`}
+                                  className={`h-4 w-4 ${i < resource.rating ? "text-yellow-400 fill-current" : "text-gray-300"
+                                    }`}
                                 />
                               ))}
                             </div>
