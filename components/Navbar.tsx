@@ -26,11 +26,11 @@ export default function ModernCyberpunkNavbar() {
   }, [])
 
   const navItems = [
-    { name: "Home", href: "#", icon: Home },
-    { name: "Leaderboard", href: "#", icon: User },
-    { name: "Pricing", href: "#", icon: DollarSign },
-    { name: "Blog", href: "#", icon: Zap },
-    {name: "about", href: "#", icon: Shield },
+    { name: "Home", href: "/", icon: Home },
+    { name: "Leaderboard", href: "/leaderboard", icon: User },
+    { name: "Pricing", href: "/pricing", icon: DollarSign },
+    { name: "Blog", href: "/blog", icon: Zap },
+    {name: "about", href: "/about", icon: Shield },
   ]
 
   return (
@@ -77,10 +77,10 @@ export default function ModernCyberpunkNavbar() {
               <div className="flex items-center space-x-3 group cursor-pointer">
                 <div className="relative">
                   {/* Outer glow ring */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-violet-400 to-cyan-400 rounded-xl blur-md opacity-0 group-hover:opacity-40 transition-all duration-300 animate-pulse" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-violet-400 to-cyan-400 rounded-xl blur-md opacity-0 " />
                   
                   {/* Main logo container */}
-                  <div className="relative w-10 h-10 bg-gradient-to-br from-violet-600 via-purple-600 to-cyan-600 rounded-xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg">
+                  <div className="relative w-10 h-10 bg-gradient-to-br from-violet-600 via-purple-600 to-cyan-600 rounded-xl flex items-center justify-center transform shadow-lg">
                     <Command className="w-5 h-5 text-white drop-shadow-sm" />
                     
                     {/* Inner highlight */}
@@ -88,7 +88,7 @@ export default function ModernCyberpunkNavbar() {
                   </div>
                   
                   {/* Animated border */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 p-[1px] opacity-0  transition-opacity duration-300">
                     <div className="w-full h-full bg-black rounded-xl" />
                   </div>
                 </div>
@@ -164,15 +164,15 @@ export default function ModernCyberpunkNavbar() {
                     className="text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300 relative group"
                   >
                     <Bell className="w-4 h-4" />
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full animate-pulse" />
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-violet-400 rounded-full animate-ping" />
+                    {/* <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full animate-pulse" /> */}
+                    {/* <div className="absolute -top-1 -right-1 w-3 h-3 bg-violet-400 rounded-full animate-ping" /> */}
                   </Button>
 
                   {/* Enhanced Profile Dropdown */}
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="relative h-10 w-10 rounded-full group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full opacity-0 group-hover:opacity-100 " />
                         <Avatar className="h-9 w-9 border-2 border-violet-500/30 group-hover:border-violet-400 transition-colors duration-300 relative z-10">
                           <AvatarImage src={user?.imageUrl} alt="Profile" />
                           <AvatarFallback className="bg-gradient-to-br from-violet-600 to-cyan-600 text-white text-sm font-semibold">
