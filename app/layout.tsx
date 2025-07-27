@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
+import ModernCyberpunkNavbar from "@/components/Navbar"
+import { ClerkProvider } from "@clerk/nextjs"
 import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -22,6 +24,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google AdSense */}
@@ -40,24 +44,27 @@ export default function RootLayout({
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TL4SFSY3SS');
-          `}
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-TL4SFSY3SS');
+        `}
         </Script>
       </head>
-
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
+        <ThemeProvider  attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
-        >
+          disableTransitionOnChange>
+            
+              <ModernCyberpunkNavbar />
           {children}
         </ThemeProvider>
+        
+        
       </body>
     </html>
+     </ClerkProvider>
+
   )
 }
